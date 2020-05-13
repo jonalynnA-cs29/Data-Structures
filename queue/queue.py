@@ -1,4 +1,4 @@
-from linked_list import LinkedList
+from linked_list import *
 
 
 """
@@ -19,27 +19,30 @@ Stretch: What if you could only use instances of your Stack class to implement t
 
 """Uncomment for array test"""
 """array version"""
-# class Queue:
 
-#     def __init__(self):
-#         self.size = 0
-#         self.storage = []
 
-#     def __len__(self):
-#         return len(self.storage)
+class ArrQueue:
 
-#     def enqueue(self, value):
-#         self.storage.append(value)
+    def __init__(self):
+        self.size = 0
+        self.storage = []
 
-#     def dequeue(self):
-#         if len(self.storage) != 0:
-#             return self.storage.pop(0)
+    def __len__(self):
+        return len(self.storage)
+
+    def enqueue(self, value):
+        self.storage.append(value)
+
+    def dequeue(self):
+        if len(self.storage) != 0:
+            return self.storage.pop(0)
+
 
 """Uncomment for SLL test"""
 """SLL version"""
 
 
-class Queue:
+class LLQueue:
     def __init__(self):
         self.size = 0
         self.storage = LinkedList()
@@ -49,8 +52,8 @@ class Queue:
 
     def enqueue(self, value):
         self.size += 1
-        return add_to_end(value)
+        self.storage.add_to_end(value)
 
     def dequeue(self):
-        return remove_from_head(value)
-
+        self.size -= 1
+        return self.storage.remove_from_head(value)

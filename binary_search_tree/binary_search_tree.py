@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,20 +19,51 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        if value < self.value:  # Check if the new nodes value is less than the current value
+            if self.left is None:  # go left
+                self.left = BSTNode(value)  # repeat search
+            else:
+                self.left.insert(value)  # insert the value
+        else:
+            if self.right is None:  # go right
+                self.right = BSTNode(value)  # repeat search
+            else:
+                self.right.insert(value)  # insert the value
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        # when we start searching, self will be the root
+        # compare the target against self
+        if target == self.value:
+            return True  # cascades back up
+        if target < self.value:
+            # go left if left is a BSTNode
+            if not self.left:
+                return False
+            return self.left.contains(target)
+        else:  # if target is > self.value
+            # go right if right is a BSTNode
+            if not self.right:
+                return False
+            return self.right.containt(target)
 
-    # Return the maximum value found in the tree
+            # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right != None:
+            return self.right.get_max()
+        else:
+            return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        fn(self.value)
+
+        if self.right:
+            self.right.for_each(fn)  # pass fn
+
+        if self.left:  # same for left
+            self.left.for_each(fn)
 
     # Part 2 -----------------------
 

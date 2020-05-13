@@ -1,7 +1,7 @@
 from linked_list import LinkedList
 
 
-class Queue:
+class ArrQueue:
     def __init__(self):
         self.size = 0
         self.storage = []
