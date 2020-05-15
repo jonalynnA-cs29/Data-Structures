@@ -1,7 +1,3 @@
-import sys
-print(sys.path)
-
-
 class Node:
     def __init__(self, value=None, next_node=None):
         # the value at this linked list node
@@ -22,30 +18,31 @@ class Node:
 
 class LinkedList:
     def __init__(self):
-        self.head = None  # first node in list
+        # first node in the list
+        self.head = None
 
     def add_to_end(self, value):
-        # regardless of if the list is empty or not, we need to wrap the value in a node
+        # regardless of if the list is empty or not, we need to wrap the value in a Node
         new_node = Node(value)
-        # what if the list is empty??
+        # what if the list is empty?
         if not self.head:
             self.head = new_node
-        # what if the list isn't empty??
+        # what if the list isn't empty?
         else:
-            # set the new node as current_node's next_node
-            # to add the new node to the last node in the list
+            # what node do we want to add the new node to?
+            # the last node in the list
             # we can get to the last node in the list by traversing it
             current = self.head
-            while current.get_next is not None:
+            while current.get_next() is not None:
                 current = current.get_next()
             # we're at the end of the linked list
             current.set_next(new_node)
 
     def remove_from_head(self):
-        # what if the list is empty
+        # what if the list is empty?
         if not self.head:
             return None
-        # what if the list is not empty
+        # what if it isn't empty?
         else:
             # we want to return the value at the current head
             value = self.head.get_value()
